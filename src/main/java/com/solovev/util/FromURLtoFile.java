@@ -1,4 +1,4 @@
-package com.solovev.repository;
+package com.solovev.util;
 
 import java.io.BufferedInputStream;
 import java.io.FileWriter;
@@ -51,4 +51,11 @@ public class FromURLtoFile {
         save(fileName);
     }
 
+    public URL getUrl() {
+        return url;
+    }
+
+    public String getContent() {
+        return content;
+    }
 }
