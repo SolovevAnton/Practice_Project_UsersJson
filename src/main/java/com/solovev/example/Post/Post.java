@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "title",
     "body"
 })
-public class User {
+public class Post {
 
     @JsonProperty("userId")
     private int userId;
@@ -27,7 +27,7 @@ public class User {
      * No args constructor for use in serialization
      * 
      */
-    public User() {
+    public Post() {
     }
 
     /**
@@ -37,7 +37,7 @@ public class User {
      * @param body
      * @param userId
      */
-    public User(int userId, int id, String title, String body) {
+    public Post(int userId, int id, String title, String body) {
         super();
         this.userId = userId;
         this.id = id;

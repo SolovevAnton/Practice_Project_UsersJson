@@ -14,7 +14,7 @@ import java.util.Objects;
     "title",
     "body"
 })
-public class User {
+public class Post{
 
     @JsonProperty("userId")
     private int userId;
@@ -29,7 +29,7 @@ public class User {
      * No args constructor for use in serialization
      * 
      */
-    public User() {
+    public Post() {
     }
 
     /**
@@ -39,7 +39,7 @@ public class User {
      * @param body
      * @param userId
      */
-    public User(int userId, int id, String title, String body) {
+    public Post(int userId, int id, String title, String body) {
         super();
         this.userId = userId;
         this.id = id;
@@ -92,12 +92,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        Post post = (Post) o;
 
-        if (userId != user.userId) return false;
-        if (id != user.id) return false;
-        if (!Objects.equals(title, user.title)) return false;
-        return Objects.equals(body, user.body);
+        if (userId != post.userId) return false;
+        if (id != post.id) return false;
+        if (!Objects.equals(title, post.title)) return false;
+        return Objects.equals(body, post.body);
     }
 
     @Override

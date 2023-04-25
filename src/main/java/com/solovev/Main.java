@@ -31,7 +31,7 @@ public class Main {
         FromURLtoFile posts = new FromURLtoFile(urlPosts);
         posts.readAndSave(fileNamePosts);
         Json2PojoGenerator generatorPosts = new Json2PojoGenerator(fileNamePosts,dirName);
-        String classNamePosts = "Users";
+        String classNamePosts = "Posts";
         String packageNamePosts ="com.solovev.example.Post";
         generatorPosts.generate(classNamePosts,packageNamePosts);
 
