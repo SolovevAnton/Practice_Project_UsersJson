@@ -10,7 +10,6 @@ import com.solovev.util.Json2PojoGenerator;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -60,22 +59,30 @@ public class Main {
         // Posts repo test
         System.out.println("\nPosts repo test");
         PostsRepository postsRepository = new PostsRepository(urlPosts);
-        //find posts test
-        Consumer<Map.Entry<User, List<Post>>> print = entry -> {
-            System.out.println(
-                    entry.getKey().getId() + ": " +
-                            entry
-                                    .getValue()
-                                    .stream()
-                                    .map(Post::getId)
-                                    .map(i -> i.toString())
-                                    .collect(Collectors.joining(" "))
-            );
-        };
+        PostsRepository emptyPostsRepository = new PostsRepository();
+          //find posts test
+        Consumer<Map.Entry<User, List<Post>>> print = entry -> System.out.println(
+                entry.getKey().getId() + ": " +
+                        entry
+                                .getValue()
+                                .stream()
+                                .map(Post::getId)
+                                .map(Object::toString)
+                                .collect(Collectors.joining(" "))
+        );
         postsRepository
                 .findPosts(usersInRep)
                 .entrySet()
-                .stream()
+                .forEach(print);
+        //test for empty post rep
+        emptyPostsRepository
+                .findPosts(usersInRep)
+                .entrySet()
+                .forEach(print);
+        //test for empty user rep
+        postsRepository
+                .findPosts(new UsersRepository())
+                .entrySet()
                 .forEach(print);
     }
 }

@@ -17,7 +17,7 @@ import java.util.Set;
 public class UsersRepository {
     private Set<User> users = new HashSet<>();
 
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     public UsersRepository() {
     }
@@ -35,10 +35,11 @@ public class UsersRepository {
 
     /**
      * Method to first find user by its id in this object
+     *
      * @param id id to look for
      * @return Optional of user when user was found, empty optional otherwise
      */
-    public Optional<User> find(int id){
+    public Optional<User> find(int id) {
         return users
                 .stream()
                 .filter(user -> user.getId() == id)

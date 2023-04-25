@@ -7,7 +7,10 @@ import com.solovev.model.user.User;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -36,27 +39,19 @@ public class PostsRepository {
      * Method to build a map of all posts and users who post them
      *
      * @param rep repository where all users are stored
-     * @return map of users and their posts. Users with no posts are omitted
+     * @return map of users and their posts. Users with no posts will have empty lists
      */
     public HashMap<User, List<Post>> findPosts(UsersRepository rep) {
-        Set<Integer> existingUsersId = rep
-                .getUsers()
+        Function<User, ArrayList<Post>> listOfUsersPost = user -> posts
                 .stream()
-                .map(User::getId)
-                .collect(Collectors.toSet());
-        List<Post> filteredPosts = posts;
-//                .stream()
-//                .filter(existingUsersId::contains)
-//                .collect(Collectors.toList());
-        Function<Post, User> getUserByPostId = p -> rep.find(p.getUserId()).get();
-        Function<Post, ArrayList<Post>> listOfUsersPost = post -> filteredPosts
-                .stream()
-                .filter(p -> p.getUserId() == post.getUserId())
+                .filter(p -> p.getUserId() == user.getId())
                 .collect(Collectors.toCollection(ArrayList::new));
         return new HashMap<>(
-                filteredPosts
+                rep
+                        .getUsers()
                         .stream()
-                        .collect(Collectors.groupingBy(getUserByPostId))
+                        .collect(Collectors.toMap(Function.identity(),
+                                listOfUsersPost))
         );
     }
 
