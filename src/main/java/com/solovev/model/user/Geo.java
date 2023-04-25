@@ -1,5 +1,5 @@
 
-package com.solovev.model.User;
+package com.solovev.model.user;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

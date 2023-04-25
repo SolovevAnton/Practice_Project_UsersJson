@@ -1,9 +1,11 @@
 
-package com.solovev.example.Post;
+package com.solovev.model.post;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -12,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "title",
     "body"
 })
-public class Post {
+public class Post{
 
     @JsonProperty("userId")
     private int userId;
@@ -85,4 +87,35 @@ public class Post {
         this.body = body;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Post post = (Post) o;
+
+        if (userId != post.userId) return false;
+        if (id != post.id) return false;
+        if (!Objects.equals(title, post.title)) return false;
+        return Objects.equals(body, post.body);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = userId;
+        result = 31 * result + id;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (body != null ? body.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "user{" +
+                "userId=" + userId +
+                ", id=" + id +
+                ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                '}';
+    }
 }

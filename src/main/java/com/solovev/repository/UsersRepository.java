@@ -2,7 +2,7 @@ package com.solovev.repository;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.solovev.model.User.User;
+import com.solovev.model.user.User;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,9 +23,9 @@ public class UsersRepository {
     }
 
     /**
-     * Method to read all objects of type User from source url to Set
+     * Method to read all objects of type user from source url to Set
      *
-     * @param url
+     * @param url url to get data from
      * @throws IOException
      */
     public UsersRepository(URL url) throws IOException {
@@ -44,6 +44,11 @@ public class UsersRepository {
                 .filter(user -> user.getId() == id)
                 .findAny();
     }
+
+    public Set<User> getUsers() {
+        return new HashSet<>(users);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
