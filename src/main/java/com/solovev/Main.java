@@ -20,7 +20,7 @@ public class Main {
         //generate classes:
         Json2PojoGenerator generator = new Json2PojoGenerator(fileName,dirName);
         String className = "Users";
-        String packageName ="com.solovev.model";
+        String packageName ="com.solovev.example"; //changed to example to not break toString equals and hashcode in generated classes
         generator.generate(className,packageName);
 
     }
