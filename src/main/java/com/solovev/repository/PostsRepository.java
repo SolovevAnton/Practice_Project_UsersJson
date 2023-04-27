@@ -2,8 +2,8 @@ package com.solovev.repository;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.solovev.model.post.Post;
-import com.solovev.model.user.User;
+import com.solovev.model.Post;
+import com.solovev.model.User;
 
 import java.io.IOException;
 import java.net.URL;

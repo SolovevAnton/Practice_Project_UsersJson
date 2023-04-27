@@ -1,5 +1,6 @@
 # Practice_Project_UsersJson
 Project on the topic "Jackson for parsing json forms" 
+Done in 5h
 
 ## Tasks: 
 1. Create a UsersJson project
